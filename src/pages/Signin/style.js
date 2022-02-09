@@ -5,7 +5,7 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    `
+`
 
 export const Form = styled.div`
     display: flex;
@@ -20,6 +20,7 @@ export const Form = styled.div`
     }
 `
 export const Input = styled.input`
+    position: relative;
     border-radius: var(--border-radius);
     max-width: 100%;
     font-size: 18px;
@@ -28,6 +29,8 @@ export const Input = styled.input`
     border: 2px solid var(--color-primary);
     color: var(--color-gray);
     background-color: var(--color-backgroundColor);
+    
+
 `
 export const Button = styled.button`
     width: 100%;
@@ -43,4 +46,26 @@ export const Button = styled.button`
     &:hover{
         background: var(--color-gradient-hover);
     }
+`
+
+export const ShowP = styled.div`
+    position: relative;
+    top: -12px;
+    color: var(--color-primary);
+    cursor: pointer;
+    
+    h6{
+        top: -3.5px;
+        position: relative;
+        margin: 5px 5px;
+        display: inline-block;
+        color: var(--color-gray);
+        pointer-events: none;
+    }
+`
+
+export const Img = styled.img`
+    width: 200px;
+    margin: 30px auto;
+    cursor: pointer;
 `
