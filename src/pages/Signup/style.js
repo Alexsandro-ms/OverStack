@@ -70,16 +70,9 @@ export const Img = styled.img`
     cursor: pointer;
 `
 
-export const Title = styled.h1`
-    color: var(--color-white);
-    font-size: 21px;
-    font-weight: 400;
-    margin-bottom: 30px;
-`
-
-export const Signup = styled.div`
+export const Signin = styled.a`
     text-align: center;
-    max-width: 200px;
+    max-width: 210px;
     color: var(--color-primary);
     margin: 12px auto;
     cursor: pointer;
@@ -101,3 +94,9 @@ export const ForgotPassword = styled.a`
     margin-bottom: 20px;
 `
 
+export const Title = styled.h1`
+    color: var(--color-white);
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 30px;
+`

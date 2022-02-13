@@ -1,5 +1,7 @@
 // Librarys
+
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom'
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { ToastContainer } from "react-toastify";
 import Lottie from "react-lottie";
@@ -9,21 +11,20 @@ import Lottie from "react-lottie";
 import api from "../../Services/Api";
 import SigninValidation from "../../Utils/Validation/SigninValidation";
 import Message from "../../Components/Message";
-import { Container, Form, Input, Button, ShowP, Img, Signup, Span, ForgotPassword } from "./style";
+import { Container, Form, Input, Button, ShowP, Img, Title, Signup, Span, ForgotPassword } from "./style";
+
+// Animations / Images
 
 import Logo from "../../Assets/Images/logo-overstack.png";
-
-// Animations
-
 import * as animationData from "../../Assets/Animations/loading.json";
 
 function Signin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState(""); //Email
+  const [password, setPassword] = useState(""); //Password
+  const [showPassword, setShowPassword] = useState(false); //Show password
+  const [loading, setLoading] = useState(false); //Button Animation loading
 
-  const defaultOptions = {
+  const defaultOptions = { // Lottie Animation
     loop: true,
     autoplay: true,
     animationData,
@@ -32,20 +33,21 @@ function Signin() {
     },
   };
 
-  // ----- Show Password --------------------
+  // ----- Show Password -------------------- >
 
   const tooglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  // ----- Handle Submit --------------------
+  // ----- Handle Submit -------------------- >
 
   async function HandleSubmit() {
-    setLoading(true);
     const data = { email, password };
+    setLoading(true);
 
     let validation = await SigninValidation(data);
     if (validation) {
+
       await api
         .post("/signin", data)
         .then((response) => {
@@ -91,8 +93,9 @@ function Signin() {
   return (
     <Container>
       <Form>
-        <ToastContainer />
+            <ToastContainer /> {/* Card Icons */}
         <Img src={Logo} alt="Logo OverStack" />
+        <Title>Faça Login!</Title>
         <Input
           type="email"
           placeholder="E-mail"
@@ -113,7 +116,7 @@ function Signin() {
           )}
           <h6>Mostrar senha...</h6>
         </ShowP>
-        <ForgotPassword href="/forgotPassword">Esqueceu sua senha?</ForgotPassword>
+        <ForgotPassword href="/forgot-password">Esqueceu sua senha?</ForgotPassword>
         <Button onClick={HandleSubmit}>
           {loading ? (
             <Lottie options={defaultOptions} height={70} width={70} />
@@ -121,7 +124,7 @@ function Signin() {
             "Entrar"
           )}
         </Button>
-        <Signup href="/signup">Ainda não tem cadastro? <Span>Cadastre-se!</Span></Signup>
+        <Signup>Ainda não tem cadastro?<Link to="/signup"><Span>Cadastre-se!</Span></Link></Signup>
       </Form>
     </Container>
   );

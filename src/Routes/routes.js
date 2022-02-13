@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from '../pages/Home'
 import Signin from '../pages/Signin'
-import Register from '../pages/Register'
+import SignUp from '../pages/Signup'
 
 function AllRoutes(){
   return(
@@ -10,7 +10,7 @@ function AllRoutes(){
     <Routes>
       <Route path="/" exact element={<Home/>}/>
       <Route path="/signin" exact element={<Signin/>}/>
-      <Route path="/Register" exact element={<Register/>}/>
+      <Route path="/signUp" exact element={<SignUp/>}/>
     </Routes>
     </BrowserRouter>
   )
