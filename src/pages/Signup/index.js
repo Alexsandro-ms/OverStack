@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiEye, HiEyeOff } from "react-icons/hi";
+import { FaSignInAlt } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 import Lottie from "react-lottie";
 
@@ -21,12 +22,16 @@ import {
   Signin,
   Span,
   Title,
+  TitleAnimation,
+  AnimationContainer,
+  AnimationLink,
 } from "./style";
 
 // Animations / Images
 
 import Logo from "../../Assets/Images/logo-overstack.png";
-import * as animationData from "../../Assets/Animations/loading.json";
+import checkAnimation from "../../Assets/Animations/loading.json";
+import successAnimation from "../../Assets/Animations/check.json";
 
 function SignUp() {
   const [name, setName] = useState(""); //Name
@@ -37,11 +42,23 @@ function SignUp() {
   const [loading, setLoading] = useState(false); //Button Animation loading
   const [success, setSuccess] = useState(false); //Button Animation loading
 
-  const defaultOptions = {
-    // Lottie Animation
+  // Loading Animation
+
+  const optionsLoading = {
     loop: true,
     autoplay: true,
-    animationData,
+    animationData: checkAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  //Check Animation
+
+  const optionsSuccess = {
+    loop: true,
+    autoplay: true,
+    animationData: successAnimation,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice",
     },
@@ -102,7 +119,17 @@ function SignUp() {
   return (
     <Container>
       {success ? (
-        <h1>Deu Certo</h1>
+        <AnimationContainer>
+          <TitleAnimation>Cadastrado com sucesso!</TitleAnimation>
+          <Lottie options={optionsSuccess} height={70} width={70} />
+          <br />
+          <Link to="/signin">
+            <AnimationLink>
+              Faça Login!
+              <FaSignInAlt style={{ margin: "0 8px" }} />
+            </AnimationLink>
+          </Link>
+        </AnimationContainer>
       ) : (
         <Form>
           <ToastContainer /> {/* Card Icons */}
@@ -142,7 +169,7 @@ function SignUp() {
           </ShowP>
           <Button onClick={HandleSubmit}>
             {loading ? (
-              <Lottie options={defaultOptions} height={70} width={70} />
+              <Lottie options={optionsLoading} height={70} width={70} />
             ) : (
               "Cadastrar"
             )}
