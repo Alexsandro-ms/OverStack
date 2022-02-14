@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -20,6 +20,10 @@ export const GlobalStyle = createGlobalStyle`
         outline: none;
     }
 
+    a{
+        text-decoration: none;
+    }
+
     :root{
         /* Colors */
         --color-primary: #bf00b5;
@@ -32,4 +36,4 @@ export const GlobalStyle = createGlobalStyle`
         
         --border-radius: 8px;
     }
-`
+`;

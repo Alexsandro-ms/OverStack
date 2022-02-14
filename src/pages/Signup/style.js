@@ -106,7 +106,13 @@ export const TitleAnimation = styled.h1`
   font-weight: bold;
 `;
 export const AnimationLink = styled.span`
-  color: var(--color-gray);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  svg {
+    margin-left: 5px;
+    width: 15px;
+  }
 `;
 export const AnimationContainer = styled.div`
   width: 50%;

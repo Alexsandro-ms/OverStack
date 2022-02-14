@@ -87,7 +87,7 @@ function SignUp() {
 
   async function handleRequest(data) {
     await api
-      .post("/signup", data)
+      .post("/user", data)
       .then((response) => {
         Message(response.data.message);
         setTimeout(() => {

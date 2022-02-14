@@ -1,7 +1,7 @@
 // Librarys
 
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import { ToastContainer } from "react-toastify";
 import Lottie from "react-lottie";
@@ -11,7 +11,18 @@ import Lottie from "react-lottie";
 import api from "../../Services/Api";
 import SigninValidation from "../../Utils/Validation/SigninValidation";
 import Message from "../../Components/Message";
-import { Container, Form, Input, Button, ShowP, Img, Title, Signup, Span, ForgotPassword } from "./style";
+import {
+  Container,
+  Form,
+  Input,
+  Button,
+  ShowP,
+  Img,
+  Title,
+  Signup,
+  Span,
+  ForgotPassword,
+} from "./style";
 
 // Animations / Images
 
@@ -24,7 +35,8 @@ function Signin() {
   const [showPassword, setShowPassword] = useState(false); //Show password
   const [loading, setLoading] = useState(false); //Button Animation loading
 
-  const defaultOptions = { // Lottie Animation
+  const defaultOptions = {
+    // Lottie Animation
     loop: true,
     autoplay: true,
     animationData,
@@ -47,18 +59,16 @@ function Signin() {
 
     let validation = await SigninValidation(data);
     if (validation) {
-
       await api
-        .post("/signin", data)
+        .post("/user", data)
         .then((response) => {
-
-          localStorage.setItem("over_name", response.data.user.name)
-          localStorage.setItem("over_token", response.data.token)
+          localStorage.setItem("over_name", response.data.user.name);
+          localStorage.setItem("over_token", response.data.token);
 
           Message(response);
           setTimeout(() => {
             setLoading(false);
-            handleAuthenticated()
+            handleAuthenticated();
           }, 2000);
         })
         .catch((error) => {
@@ -78,22 +88,22 @@ function Signin() {
     }
   }
 
-  async function handleAuthenticated(){
-    let token = await localStorage.getItem("over_token")
+  async function handleAuthenticated() {
+    let token = await localStorage.getItem("over_token");
 
-    if(token){
-      window.location = "/"
+    if (token) {
+      window.location = "/";
     }
   }
 
-  useEffect(()=>{
-    handleAuthenticated()
-  }, [])
+  useEffect(() => {
+    handleAuthenticated();
+  }, []);
 
   return (
     <Container>
       <Form>
-            <ToastContainer /> {/* Card Icons */}
+        <ToastContainer /> {/* Card Icons */}
         <Img src={Logo} alt="Logo OverStack" />
         <Title>Faça Login!</Title>
         <Input
@@ -116,7 +126,9 @@ function Signin() {
           )}
           <h6>Mostrar senha...</h6>
         </ShowP>
-        <ForgotPassword href="/forgot-password">Esqueceu sua senha?</ForgotPassword>
+        <ForgotPassword href="/forgot-password">
+          Esqueceu sua senha?
+        </ForgotPassword>
         <Button onClick={HandleSubmit}>
           {loading ? (
             <Lottie options={defaultOptions} height={70} width={70} />
@@ -124,7 +136,12 @@ function Signin() {
             "Entrar"
           )}
         </Button>
-        <Signup>Ainda não tem cadastro?<Link to="/signup"><Span>Cadastre-se!</Span></Link></Signup>
+        <Signup>
+          Ainda não tem cadastro?
+          <Link to="/signup">
+            <Span>Cadastre-se!</Span>
+          </Link>
+        </Signup>
       </Form>
     </Container>
   );
