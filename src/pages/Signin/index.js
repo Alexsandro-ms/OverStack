@@ -60,7 +60,7 @@ function Signin() {
     let validation = await SigninValidation(data);
     if (validation) {
       await api
-        .post("/user", data)
+        .post("/signin", data)
         .then((response) => {
           localStorage.setItem("over_name", response.data.user.name);
           localStorage.setItem("over_token", response.data.token);
