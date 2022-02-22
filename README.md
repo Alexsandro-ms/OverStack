@@ -6,7 +6,7 @@
 
 ### Techs
 
-React [ Framework ]
+- React [ Framework ]
 
 ### Packages
 
